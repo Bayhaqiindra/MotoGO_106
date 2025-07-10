@@ -16,7 +16,7 @@ class ServiceHttp {
     };
 
     if (isJson) {
-      headers['Content-Type'] = 'application/json'; // Tambahkan hanya untuk JSON
+      headers['Content-Type'] = 'application/json';
     }
 
     if (includeAuth) {
@@ -29,12 +29,42 @@ class ServiceHttp {
     return headers;
   }
 
+  /// ========== SAFE REQUEST HANDLER ==========
+  Future<http.Response> safeRequest(Future<http.Response> Function() requestFn) async {
+    try {
+      final response = await requestFn();
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return response;
+      } else {
+        throw HttpException(
+          'HTTP Error: ${response.statusCode}\n${response.body}',
+        );
+      }
+    } catch (e) {
+      print('[ERROR] $e');
+      rethrow;
+    }
+  }
+
+  /// ========== HTTP METHODS ==========
   Future<http.Response> get(String endpoint, {bool includeAuth = true}) async {
     final url = Uri.parse('$baseUrl$endpoint');
     final headers = await _getHeaders(includeAuth: includeAuth);
     print('[DEBUG] GET $url');
-    print('[DEBUG] Headers: $headers');
     return await http.get(url, headers: headers);
+  }
+
+  Future<http.Response> getWithQuery(
+    String endpoint,
+    Map<String, dynamic> queryParams, {
+    bool includeAuth = true,
+  }) async {
+    final uri = Uri.parse('$baseUrl$endpoint').replace(
+      queryParameters: queryParams.map((key, value) => MapEntry(key, value.toString())),
+    );
+    final headers = await _getHeaders(includeAuth: includeAuth);
+    print('[DEBUG] GET (query) $uri');
+    return await http.get(uri, headers: headers);
   }
 
   Future<http.Response> post(
@@ -46,8 +76,6 @@ class ServiceHttp {
     final headers = await _getHeaders(includeAuth: includeAuth);
     final encodedBody = jsonEncode(body ?? {});
     print('[DEBUG] POST $url');
-    print('[DEBUG] Headers: $headers');
-    print('[DEBUG] Body: $encodedBody');
     return await http.post(url, headers: headers, body: encodedBody);
   }
 
@@ -60,20 +88,28 @@ class ServiceHttp {
     final headers = await _getHeaders(includeAuth: includeAuth);
     final encodedBody = jsonEncode(body ?? {});
     print('[DEBUG] PUT $url');
-    print('[DEBUG] Headers: $headers');
-    print('[DEBUG] Body: $encodedBody');
     return await http.put(url, headers: headers, body: encodedBody);
+  }
+
+  Future<http.Response> patch(
+    String endpoint, {
+    Map<String, dynamic>? body,
+    bool includeAuth = true,
+  }) async {
+    final url = Uri.parse('$baseUrl$endpoint');
+    final headers = await _getHeaders(includeAuth: includeAuth);
+    final encodedBody = jsonEncode(body ?? {});
+    print('[DEBUG] PATCH $url');
+    return await http.patch(url, headers: headers, body: encodedBody);
   }
 
   Future<http.Response> delete(String endpoint, {bool includeAuth = true}) async {
     final url = Uri.parse('$baseUrl$endpoint');
     final headers = await _getHeaders(includeAuth: includeAuth);
     print('[DEBUG] DELETE $url');
-    print('[DEBUG] Headers: $headers');
     return await http.delete(url, headers: headers);
   }
 
-  /// Multipart request (misalnya untuk upload foto)
   Future<http.Response> sendMultipartRequest(
     String method,
     String endpoint, {
@@ -87,7 +123,7 @@ class ServiceHttp {
 
     final headers = await _getHeaders(
       includeAuth: includeAuth,
-      isJson: false, // multipart tidak butuh Content-Type: application/json
+      isJson: false,
     );
     request.headers.addAll(headers);
 
@@ -103,10 +139,6 @@ class ServiceHttp {
     }
 
     print('[DEBUG] MULTIPART $method $url');
-    print('[DEBUG] Headers: ${request.headers}');
-    print('[DEBUG] Fields: ${request.fields}');
-    print('[DEBUG] File: ${file?.path}');
-
     final streamedResponse = await request.send();
     return await http.Response.fromStream(streamedResponse);
   }
