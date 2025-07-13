@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:tugas_akhir/data/model/request/pelanggan/pelanggan_profile_request_model.dart';
-import 'package:tugas_akhir/data/model/response/pelanggan/pelanggan_profile_response_model.dart';
-import 'package:tugas_akhir/data/repository/pelanggan_profile_repository.dart';
+import 'package:tugas_akhir/data/model/request/pelanggan/profile/pelanggan_profile_request_model.dart';
+import 'package:tugas_akhir/data/model/response/pelanggan/profile/pelanggan_profile_response_model.dart';
+import 'package:tugas_akhir/data/repository/pelanggan/pelanggan_profile_repository.dart';
 
 part 'profile_pelanggan_event.dart';
 part 'profile_pelanggan_state.dart';
