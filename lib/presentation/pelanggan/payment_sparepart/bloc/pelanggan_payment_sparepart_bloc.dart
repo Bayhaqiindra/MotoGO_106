@@ -21,11 +21,14 @@ class PelangganPaymentSparepartBloc extends Bloc<PelangganPaymentSparepartEvent,
     SubmitPelangganPaymentSparepart event,
     Emitter<PelangganPaymentSparepartState> emit,
   ) async {
+    print('[PelangganPaymentSparepartBloc] Submitting payment...');
     emit(PelangganPaymentSparepartLoading());
     try {
       final response = await _repository.submitPaymentSparepart(event.requestModel);
+      print('[PelangganPaymentSparepartBloc] Payment submission successful: ${response.message}');
       emit(PelangganPaymentSparepartSubmitSuccess(response));
     } catch (e) {
+      print('[PelangganPaymentSparepartBloc] Payment submission error: $e');
       emit(PelangganPaymentSparepartError(e.toString()));
     }
   }
@@ -35,11 +38,14 @@ class PelangganPaymentSparepartBloc extends Bloc<PelangganPaymentSparepartEvent,
     LoadPelangganPaymentSparepartHistory event,
     Emitter<PelangganPaymentSparepartState> emit,
   ) async {
+    print('[PelangganPaymentSparepartBloc] Loading payment history...');
     emit(PelangganPaymentSparepartLoading());
     try {
       final payments = await _repository.getCustomerPaymentsSparepart();
+      print('[PelangganPaymentSparepartBloc] Payment history loaded successfully. Count: ${payments.length}');
       emit(PelangganPaymentSparepartHistoryLoaded(payments));
     } catch (e) {
+      print('[PelangganPaymentSparepartBloc] Error loading payment history: $e');
       emit(PelangganPaymentSparepartError(e.toString()));
     }
   }

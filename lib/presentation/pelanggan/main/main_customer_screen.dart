@@ -4,6 +4,7 @@ import 'package:tugas_akhir/presentation/pelanggan/history/pages/customer_histor
 import 'package:tugas_akhir/presentation/pelanggan/home/home_screen.dart';
 import 'package:tugas_akhir/presentation/pelanggan/profile/pelanggan_profile_screen.dart';
 import 'package:tugas_akhir/presentation/pelanggan/transaction/widget/riwayat_transaction_page.dart';
+import 'package:tugas_akhir/presentation/pelanggan/main/widgets/my_bottom_nav_bar_customer.dart'; // <--- IMPORT BARU
 
 class MainCustomerScreen extends StatefulWidget {
   const MainCustomerScreen({super.key});
@@ -19,27 +20,25 @@ class _MainCustomerScreenState extends State<MainCustomerScreen> {
     const HomeScreen(),
     const BookingFormScreen(),
     const CustomerHistoryPage(),
-    const PelangganProfileScreen(), 
+    const PelangganProfileScreen(),
     const RiwayatTransactionPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true, // Penting: Memungkinkan body meluas di belakang bar mengambang
       body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
-        selectedItemColor: const Color(0xFF3A60C0),
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: 'Booking'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.chat_rounded), label: 'Transaction'),
-          
-        ],
+      bottomNavigationBar: Padding( // Menambahkan Padding untuk membuat bar "mengambang"
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20), // Sesuaikan nilai ini untuk jarak yang diinginkan
+        child: MyBottomNavBarCustomer( // <--- Menggunakan widget kustom
+          selectedIndex: _selectedIndex,
+          onItemSelected: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        ),
       ),
     );
   }

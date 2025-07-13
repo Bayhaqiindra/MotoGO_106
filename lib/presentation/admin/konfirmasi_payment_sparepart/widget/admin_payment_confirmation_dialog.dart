@@ -97,7 +97,7 @@ class _AdminPaymentConfirmationDialogState
               ),
               RadioListTile<String>(
                 title: const Text('Verifikasi (Pembayaran Diterima)'),
-                value: 'selesai',
+                value: 'verified',
                 groupValue: _selectedStatus,
                 onChanged: (value) {
                   setState(() {

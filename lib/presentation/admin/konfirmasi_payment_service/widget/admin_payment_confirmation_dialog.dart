@@ -102,7 +102,7 @@ class _AdminPaymentConfirmationDialogState extends State<AdminPaymentConfirmatio
               ),
               RadioListTile<String>(
                 title: const Text('Konfirmasi (Pembayaran Diterima)'),
-                value: 'confirmed', // Sesuai dengan nilai enum/string di API
+                value: 'selesai', // Sesuai dengan nilai enum/string di API
                 groupValue: _selectedStatus,
                 onChanged: (value) {
                   setState(() {
@@ -112,7 +112,7 @@ class _AdminPaymentConfirmationDialogState extends State<AdminPaymentConfirmatio
               ),
               RadioListTile<String>(
                 title: const Text('Tolak (Pembayaran Ditolak)'),
-                value: 'rejected', // Sesuai dengan nilai enum/string di API
+                value: 'ditolak', // Sesuai dengan nilai enum/string di API
                 groupValue: _selectedStatus,
                 onChanged: (value) {
                   setState(() {
