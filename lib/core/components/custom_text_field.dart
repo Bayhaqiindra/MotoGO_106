@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_akhir/core/components/spaces.dart';
+import 'package:tugas_akhir/core/components/spaces.dart'; // Pastikan path ini benar
 
 class CustomTextField extends StatelessWidget {
-  final String validator;
   final TextEditingController controller;
   final String label;
   final Function(String value)? onChanged;
   final bool obscureText;
   final TextInputType? keyboardType;
   final bool showLabel;
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
+  final Widget? prefixIcon; // Sudah ada
+  final Widget? suffixIcon; // Sudah ada
   final bool readOnly;
   final int maxLines;
+  final String? Function(String?)? validator;
+  final String? hintText;
 
   const CustomTextField({
     super.key,
@@ -26,11 +27,14 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.readOnly = false,
     this.maxLines = 1,
-    required this.validator,
+    this.validator,
+    this.hintText,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colors = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,37 +42,49 @@ class CustomTextField extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width * 0.03,
+              fontSize: 14,
               fontWeight: FontWeight.w700,
+              color: colors.onSurface,
             ),
           ),
           const SpaceHeight(12.0),
         ],
         TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (vl) {
-            if (vl == null || vl.isEmpty) {
-              return validator;
-            }
-            return null;
-          },
+          validator: validator,
           controller: controller,
           onChanged: onChanged,
           obscureText: obscureText,
           keyboardType: keyboardType,
           readOnly: readOnly,
+          maxLines: maxLines,
           decoration: InputDecoration(
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon, // Menggunakan prefixIcon yang diberikan
+            suffixIcon: suffixIcon, // Menggunakan suffixIcon yang diberikan
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
-              borderSide: const BorderSide(color: Colors.grey),
+              borderSide: BorderSide(color: colors.outline),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
-              borderSide: const BorderSide(color: Colors.grey),
+              borderSide: BorderSide(color: colors.outline),
             ),
-            hintText: label,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: colors.primary, width: 2.0),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: colors.error, width: 2.0),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: colors.error, width: 2.0),
+            ),
+            hintText: hintText ?? (showLabel ? null : label),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            filled: true,
+            fillColor: colors.surfaceVariant.withOpacity(0.2),
           ),
         ),
       ],
