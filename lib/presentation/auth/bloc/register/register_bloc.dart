@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:tugas_akhir/data/model/request/auth/register_request_model.dart';
 import 'package:tugas_akhir/data/model/response/auth/register_response_model.dart';
-import 'package:tugas_akhir/data/repository/auth_repository.dart';
+import 'package:tugas_akhir/data/repository/auth/auth_repository.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:tugas_akhir/data/model/request/auth/login_request_model.dart';
 import 'package:tugas_akhir/data/model/response/auth/login_response_model.dart';
-import 'package:tugas_akhir/data/repository/auth_repository.dart';
+import 'package:tugas_akhir/data/repository/auth/auth_repository.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
