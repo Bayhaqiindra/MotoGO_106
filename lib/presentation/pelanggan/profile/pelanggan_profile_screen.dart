@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tugas_akhir/data/model/request/pelanggan/pelanggan_profile_request_model.dart';
+import 'package:tugas_akhir/data/model/request/pelanggan/profile/pelanggan_profile_request_model.dart';
 import 'package:tugas_akhir/presentation/pelanggan/profile/bloc/profile_pelanggan_bloc.dart';
 import 'package:tugas_akhir/presentation/pelanggan/profile/widget/pelanggan_profile_input_form.dart';
 import 'package:tugas_akhir/presentation/pelanggan/profile/widget/pelanggan_profile_view_form.dart';
@@ -27,7 +27,7 @@ class _PelangganProfileScreenState extends State<PelangganProfileScreen> {
       name: name,
       phone: phone,
       address: address,
-      profilePictureFile: file,
+      profilePicture: file,
     );
 
     if (isEditMode) {
