@@ -1,8 +1,7 @@
 Motogo App
 
-
-Screenshots
 Role Pelanggan (Customer Role)
+
 <img src="https://github.com/user-attachments/assets/87613026-ef13-4f07-946f-12ffab2aadd8" alt="Motogo App Screenshot 1" width="200"/>
 <img src="https://github.com/user-attachments/assets/85550659-bde6-4b8f-a184-6ae37f7cc95a" alt="Motogo App Screenshot 2" width="200"/>
 <img src="https://github.com/user-attachments/assets/b2cb6380-7bd9-4573-99ef-7966e8831230" alt="Motogo App Screenshot 3" width="200"/>
