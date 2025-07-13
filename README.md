@@ -1,6 +1,9 @@
 Motogo App
+This repository contains screenshots of the Motogo App, showcasing its functionalities for both customer and admin roles.
 
+Screenshots
 Role Pelanggan (Customer Role)
+These screenshots illustrate the user interface and features available to customers using the Motogo App.
 
 <img src="https://github.com/user-attachments/assets/87613026-ef13-4f07-946f-12ffab2aadd8" alt="Motogo App Screenshot 1" width="200"/>
 <img src="https://github.com/user-attachments/assets/85550659-bde6-4b8f-a184-6ae37f7cc95a" alt="Motogo App Screenshot 2" width="200"/>
@@ -21,8 +24,12 @@ Role Pelanggan (Customer Role)
 <img src="https://github.com/user-attachments/assets/4d1a27db-914a-4ae0-9470-be49a6593f2e" alt="Motogo App Screenshot 17" width="200"/>
 
 Role Admin (Admin Role)
+These screenshots display the administrative interface and management tools available to Motogo App administrators.
 
-<img src="http://googleusercontent.com/image_generation_content/1" alt="Motogo App Admin Screenshot" width="300"/>
+<img src="http://googleusercontent.com/image_generation_content/1" alt="Motogo App Admin Screenshot" width="200"/>
+
+Original Admin Screenshots (for reference):
+
 <img width="1080" height="2340" alt="Screenshot_1752449021" src="https://github.com/user-attachments/assets/18ac8b7c-54d7-4360-879d-22ea008a5ecd" />
 <img width="1080" height="2340" alt="Screenshot_1752448955" src="https://github.com/user-attachments/assets/03498f33-b280-49b2-94ea-97d00767fd57" />
 <img width="1080" height="2340" alt="Screenshot_1752448945" src="https://github.com/user-attachments/assets/7277573c-0ce3-41ea-b473-7c4f329824e7" />
