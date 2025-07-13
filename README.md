@@ -1,8 +1,8 @@
 Motogo App
-Welcome to the Motogo App repository! This README provides an overview of the application and its features.
 
 Screenshots
-Here are some screenshots showcasing the Motogo App:
+
+Role Pelanggan
 
 <img src="https://github.com/user-attachments/assets/87613026-ef13-4f07-946f-12ffab2aadd8" alt="Motogo App Screenshot 1" width="200"/>
 <img src="https://github.com/user-attachments/assets/85550659-bde6-4b8f-a184-6ae37f7cc95a" alt="Motogo App Screenshot 2" width="200"/>
@@ -21,3 +21,7 @@ Here are some screenshots showcasing the Motogo App:
 <img src="https://github.com/user-attachments/assets/47346907-74ab-478d-8c90-0e8271c39e19" alt="Motogo App Screenshot 15" width="200"/>
 <img src="https://github.com/user-attachments/assets/55cd2107-8f2c-4620-b075-eb66a99b9a80" alt="Motogo App Screenshot 16" width="200"/>
 <img src="https://github.com/user-attachments/assets/4d1a27db-914a-4ae0-9470-be49a6593f2e" alt="Motogo App Screenshot 17" width="200"/>
+
+Role Admin
+<img width="1080" height="2340" alt="Screenshot_1752447811" src="https://github.com/user-attachments/assets/00bf7284-25d7-46e2-8117-01b1b3a9e258" />
+<img width="1080" height="2340" alt="Screenshot_1752447845" src="https://github.com/user-attachments/assets/74bd68d4-a4f0-4506-a954-a05460d09359" />
