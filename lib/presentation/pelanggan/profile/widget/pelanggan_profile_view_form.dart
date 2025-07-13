@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_akhir/core/components/buttons.dart';
 import 'package:tugas_akhir/core/components/spaces.dart';
-import 'package:tugas_akhir/data/model/response/pelanggan/pelanggan_profile_response_model.dart';
+import 'package:tugas_akhir/data/model/response/pelanggan/profile/pelanggan_profile_response_model.dart';
 
 class PelangganProfileViewForm extends StatelessWidget {
   final Data profileData;
@@ -19,6 +19,12 @@ class PelangganProfileViewForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Tambahkan debug
+    debugPrint('[DEBUG] Profile picture URL: ${profileData.profilePicture}');
+
+    bool hasProfilePicture = profileData.profilePicture != null &&
+        profileData.profilePicture!.isNotEmpty;
+
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -31,16 +37,23 @@ class PelangganProfileViewForm extends StatelessWidget {
         Center(
           child: CircleAvatar(
             radius: 60,
-            backgroundImage: profileData.profilePicture != null &&
-                    profileData.profilePicture!.isNotEmpty
+            backgroundImage: hasProfilePicture
                 ? NetworkImage(profileData.profilePicture!)
                 : null,
-            child: profileData.profilePicture == null ||
-                    profileData.profilePicture!.isEmpty
+            child: !hasProfilePicture
                 ? const Icon(Icons.person, size: 32)
                 : null,
           ),
         ),
+        if (!hasProfilePicture)
+          const Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: Text(
+              '[DEBUG] Tidak ada gambar profil ditemukan.',
+              style: TextStyle(color: Colors.red),
+              textAlign: TextAlign.center,
+            ),
+          ),
         const SpaceHeight(24),
         _buildInfo("Nama", profileData.name ?? '-'),
         _buildInfo("Telepon", profileData.phone ?? '-'),

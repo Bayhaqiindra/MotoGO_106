@@ -4,12 +4,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tugas_akhir/core/components/buttons.dart';
 import 'package:tugas_akhir/core/components/custom_text_field.dart';
 import 'package:tugas_akhir/core/components/spaces.dart';
-import 'package:tugas_akhir/data/model/response/pelanggan/pelanggan_profile_response_model.dart';
+import 'package:tugas_akhir/data/model/response/pelanggan/profile/pelanggan_profile_response_model.dart';
 
 class PelangganProfileInputForm extends StatefulWidget {
   final bool isUpdateMode;
   final Data? initialData;
-  final Function(String name, String phone, String address, File? image) onSubmit;
+  final Function(String name, String phone, String address, File? image)
+  onSubmit;
   final bool isLoading;
 
   const PelangganProfileInputForm({
@@ -21,7 +22,8 @@ class PelangganProfileInputForm extends StatefulWidget {
   });
 
   @override
-  State<PelangganProfileInputForm> createState() => _PelangganProfileInputFormState();
+  State<PelangganProfileInputForm> createState() =>
+      _PelangganProfileInputFormState();
 }
 
 class _PelangganProfileInputFormState extends State<PelangganProfileInputForm> {
@@ -69,48 +71,62 @@ class _PelangganProfileInputFormState extends State<PelangganProfileInputForm> {
               radius: 60,
               backgroundImage:
                   _imageFile != null ? FileImage(_imageFile!) : null,
-              child: _imageFile == null
-                  ? const Icon(Icons.camera_alt, size: 32)
-                  : null,
+              child:
+                  _imageFile == null
+                      ? const Icon(Icons.camera_alt, size: 32)
+                      : null,
             ),
           ),
           const SpaceHeight(16),
           CustomTextField(
             controller: nameController,
             label: 'Nama Lengkap',
-            validator: 'Nama tidak boleh kosong',
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Nama tidak boleh kosong'
+                        : null,
           ),
           const SpaceHeight(16),
           CustomTextField(
             controller: phoneController,
             label: 'No HP',
             keyboardType: TextInputType.phone,
-            validator: 'Nomor HP tidak boleh kosong',
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Nomor HP tidak boleh kosong'
+                        : null,
           ),
           const SpaceHeight(16),
           CustomTextField(
             controller: addressController,
             label: 'Alamat',
             maxLines: 3,
-            validator: 'Alamat tidak boleh kosong',
+            validator:
+                (value) =>
+                    value == null || value.isEmpty
+                        ? 'Alamat tidak boleh kosong'
+                        : null,
           ),
           const SpaceHeight(24),
           Button.filled(
-            onPressed: widget.isLoading
-                ? null
-                : () {
-                    if (_formKey.currentState!.validate()) {
-                      widget.onSubmit(
-                        nameController.text,
-                        phoneController.text,
-                        addressController.text,
-                        _imageFile,
-                      );
-                    }
-                  },
+            onPressed:
+                widget.isLoading
+                    ? null
+                    : () {
+                      if (_formKey.currentState!.validate()) {
+                        widget.onSubmit(
+                          nameController.text,
+                          phoneController.text,
+                          addressController.text,
+                          _imageFile,
+                        );
+                      }
+                    },
             label: widget.isUpdateMode ? 'Perbarui' : 'Simpan',
             disabled: widget.isLoading,
-          )
+          ),
         ],
       ),
     );
